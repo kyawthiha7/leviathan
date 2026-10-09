@@ -11,7 +11,7 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // Opt-in model regression: sends synthetic review inputs only, never executes

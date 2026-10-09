@@ -3,7 +3,7 @@ package agent
 import (
 	"strings"
 
-	"github.com/Autumn-27/norma/harness"
+	"leviathan/thirdparty/norma/harness"
 )
 
 // Wrap-up / settlement prompt: when an agent is terminated because [its step

@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // scriptedSyncModel drives the loop's non-streaming path (QueryInput.NonStreaming

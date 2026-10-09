@@ -11,7 +11,7 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/traffic"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func (s *Server) seedFindingWorkflowTools() {

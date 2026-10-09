@@ -7,7 +7,7 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/llmpool"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // Server-side wiring for LLM round-robin (failover). Design in docs/llm-failover-design.md:

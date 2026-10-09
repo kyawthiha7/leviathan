@@ -13,8 +13,8 @@ import (
 
 	"leviathan/agent"
 	"leviathan/db"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
 )
 
 type scriptedLLMProvider struct {

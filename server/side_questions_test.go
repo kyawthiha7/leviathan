@@ -17,8 +17,8 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/sidequestion"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
 )
 
 type sideHTTPProvider struct {

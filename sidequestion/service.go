@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // SideQuestionService has no harness, tool executor, transcript writer or model

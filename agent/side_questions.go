@@ -6,7 +6,7 @@ import (
 	"strings"
 
 	"leviathan/sidequestion"
-	"github.com/Autumn-27/norma/agentcore"
+	"leviathan/thirdparty/norma/agentcore"
 )
 
 func attachSideCapture(ctx context.Context, opts *agentcore.Options) context.Context {

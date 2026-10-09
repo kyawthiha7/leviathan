@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"log"
 
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 
 	"leviathan/agent"
 	"leviathan/db"

@@ -3,8 +3,8 @@ package noaadapter
 import (
 	"time"
 
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/noa"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/noa"
 )
 
 // Materialize applies a session's compression state to a message array so the

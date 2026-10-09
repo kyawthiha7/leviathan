@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"leviathan/db"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/llm"
 )
 
 type captureUsageProvider struct {

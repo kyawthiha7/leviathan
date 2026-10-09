@@ -25,8 +25,8 @@ import (
 
 	"leviathan/agent"
 	"leviathan/db"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/skill"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/skill"
 )
 
 // validSkillName checks the agentskills.io name constraints, widened so a skill can

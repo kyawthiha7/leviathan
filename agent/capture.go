@@ -9,9 +9,9 @@ import (
 	"leviathan/db"
 	"leviathan/intercept"
 	"leviathan/sidequestion"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // captureRun drives one agent turn-to-completion over Session.Prompt and emits a

@@ -9,7 +9,7 @@ import (
 
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 type reviewCaptureProvider struct{ request llm.CompletionRequest }

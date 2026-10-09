@@ -26,9 +26,9 @@ import (
 	"leviathan/llmrec"
 	"leviathan/report"
 	"leviathan/traffic"
-	"github.com/Autumn-27/norma/llm"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/llm"
+	actool "leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // BuildVersion is the backend application version, injected from cmd/leviathan at

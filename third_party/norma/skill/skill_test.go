@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/tool"
 )
 
 func TestSkillToolReturnsInstructions(t *testing.T) {

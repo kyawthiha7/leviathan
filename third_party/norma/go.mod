@@ -1,4 +1,4 @@
-module github.com/Autumn-27/norma
+module leviathan/thirdparty/norma
 
 go 1.26.3
 

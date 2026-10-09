@@ -25,7 +25,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // Summarizer condenses messages into a digest. Injected so the host controls

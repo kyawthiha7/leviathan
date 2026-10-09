@@ -10,11 +10,11 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // Definition configures a named subagent (FR-09.1).

@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 const findingIDGuidance = "\n\n**Finding ID conventions**: finding_id is the standalone finding record ID; finding_node_id is the exploration node ID. The id returned by list_findings / list_task_findings / node_detail / get_task_node_detail stays the exploration node ID; read the standalone ID from the finding_id returned by the same call. get_finding_traffic / bind_finding_traffic use the standalone finding_id. The legacy update_finding_report's finding_id parameter is still passed finding_node_id. Do not use the number on the first line of report_finding for evidence tools, and do not guess other numbers after an ID error."

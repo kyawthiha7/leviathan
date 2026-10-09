@@ -10,7 +10,7 @@ import (
 
 	"leviathan/agent"
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func workflowCall(t *testing.T, ctx context.Context, tool actool.CoreTool, input any, wantError bool) string {

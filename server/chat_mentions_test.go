@@ -15,7 +15,7 @@ import (
 
 	"leviathan/agent"
 	"leviathan/db"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 func TestChatMentionParsing(t *testing.T) {

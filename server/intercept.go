@@ -15,7 +15,7 @@ import (
 	"leviathan/guard"
 	"leviathan/intercept"
 	"leviathan/llmrec"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // judgeWorkerLane is the usage-ledger "worker" label for intercept fallback-judge

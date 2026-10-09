@@ -3,7 +3,6 @@ module leviathan
 go 1.26.3
 
 require (
-	github.com/Autumn-27/norma v0.4.3
 	github.com/golang-jwt/jwt/v5 v5.3.1
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.10.0
@@ -14,16 +13,17 @@ require (
 	golang.org/x/crypto v0.55.0
 	golang.org/x/net v0.58.0
 	golang.org/x/text v0.41.0
+	leviathan/thirdparty/norma v0.0.0
 	modernc.org/sqlite v1.52.0
 )
 
-// norma's own upstream repo (github.com/Autumn-27/norma) has been deleted from
-// GitHub. It's still resolvable via the Go module proxy's permanent cache, but
-// as a safety net against that cache ever going away too, a copy is kept at
-// third_party/norma and wired in here instead of being fetched over the
-// network. See third_party/norma/README.md for norma's own
-// documentation/attribution — it is third-party code, kept as-is.
-replace github.com/Autumn-27/norma => ./third_party/norma
+// norma is a third-party agent framework (originally github.com/Autumn-27/norma,
+// whose GitHub repo has since been deleted) vendored at third_party/norma under
+// this internal module path. It is kept as-is, under its own original
+// attribution — see third_party/norma/README.md — since we don't hold rights
+// to relicense or rebrand someone else's code; this rename only drops the
+// external-looking import path, it does not change authorship.
+replace leviathan/thirdparty/norma => ./third_party/norma
 
 require (
 	github.com/andybalholm/brotli v1.2.1 // indirect

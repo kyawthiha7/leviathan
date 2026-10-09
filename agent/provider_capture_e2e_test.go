@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"leviathan/llmrec"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // End-to-end through a real norma provider: the Capture rides the context into

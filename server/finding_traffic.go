@@ -16,7 +16,7 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/evidence"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func (s *Server) evidenceStore() *evidence.Store {

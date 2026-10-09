@@ -15,7 +15,7 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/intercept"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func (s *Server) listActiveFindingRetests(w http.ResponseWriter, r *http.Request) {

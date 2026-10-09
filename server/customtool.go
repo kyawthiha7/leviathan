@@ -18,8 +18,8 @@ import (
 	"time"
 
 	"leviathan/db"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // This file implements the custom-tool executor (docs/custom-tools-design.md). tools rows

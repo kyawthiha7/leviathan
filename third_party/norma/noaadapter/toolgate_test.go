@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/norma/noa"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/noa"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // harness.execOne validates a call against the tool's InputSchema before

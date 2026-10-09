@@ -11,8 +11,8 @@ import (
 
 	"leviathan/agent"
 	"leviathan/llmrec"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // Full chain against a real PG: Recorder → norma provider → capturing transport

@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // A pending background-task completion is drained into the conversation and the

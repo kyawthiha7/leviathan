@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func TestFindingWorkflowSharedAssemblyAndSwitch(t *testing.T) {

@@ -20,7 +20,7 @@ import (
 	"leviathan/guard"
 	"leviathan/intercept"
 	"leviathan/traffic"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // Task is one engagement: a description + goal + its own exploration store,

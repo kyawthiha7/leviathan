@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // assetInterceptCandidates extracts the domain/IP/URL candidate strings of one

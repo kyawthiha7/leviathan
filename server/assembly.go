@@ -11,8 +11,8 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/traffic"
-	"github.com/Autumn-27/norma/skill"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/skill"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // wireAgentAugment connects the PG agent_visibility table into the agent runtime:

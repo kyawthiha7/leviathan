@@ -14,8 +14,8 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
 	"github.com/jackc/pgx/v5/pgconn"
 )
 

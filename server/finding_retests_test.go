@@ -17,8 +17,8 @@ import (
 	"leviathan/agent"
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/llm"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/llm"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 type retestProvider struct {

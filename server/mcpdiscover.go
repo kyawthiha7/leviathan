@@ -8,8 +8,8 @@ import (
 
 	"leviathan/db"
 	"leviathan/mcphttp"
-	"github.com/Autumn-27/norma/mcp"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/mcp"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // mcpClient is the shared surface of a connected MCP server (stdio, Streamable HTTP,

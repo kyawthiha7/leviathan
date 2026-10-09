@@ -6,11 +6,11 @@ import (
 
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // MainAgent is the thin human-interface orchestrator (docs §4.2 / §7). The human

@@ -8,10 +8,10 @@ import (
 	"leviathan/db"
 	"leviathan/guard"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // Exercise the actual SDK event -> hook -> execution -> result path. No real

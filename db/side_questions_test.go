@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"leviathan/sidequestion"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/llm"
 )
 
 func sideFixture(t *testing.T) (*DB, sidequestion.Snapshot) {

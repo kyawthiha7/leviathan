@@ -12,15 +12,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/norma/compaction"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/memory"
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/plan"
-	"github.com/Autumn-27/norma/skill"
-	"github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/compaction"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/memory"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/plan"
+	"leviathan/thirdparty/norma/skill"
+	"leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // Options configures a Session (FR-07).

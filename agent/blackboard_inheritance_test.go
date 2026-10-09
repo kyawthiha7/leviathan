@@ -9,7 +9,7 @@ import (
 	"time"
 
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 func callReadJSON(t *testing.T, tool actool.CoreTool, input string) any {

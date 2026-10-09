@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // This file turns "built-in tools" from pure code into a catalog that is enumerable

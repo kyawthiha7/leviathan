@@ -12,8 +12,8 @@ import (
 
 	"leviathan/db"
 	"leviathan/sidequestion"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 type sideAgentProvider struct {

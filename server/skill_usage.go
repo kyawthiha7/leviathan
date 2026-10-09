@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/Autumn-27/norma/skill"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/skill"
+	actool "leviathan/thirdparty/norma/tool"
 
 	"leviathan/agent"
 	"leviathan/db"

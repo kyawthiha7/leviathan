@@ -3,8 +3,8 @@ package noaadapter
 import (
 	"context"
 
-	"github.com/Autumn-27/norma/compaction"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/compaction"
+	"leviathan/thirdparty/norma/llm"
 )
 
 // Compactor adapts a Session to the harness's context-manager interfaces.

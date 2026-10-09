@@ -15,7 +15,7 @@ import (
 	"time"
 
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/hook"
+	"leviathan/thirdparty/norma/hook"
 )
 
 // AuditEntry records one gated tool call.

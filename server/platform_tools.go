@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // Platform-operation tools (for the built-in Auto agent): create/update skill, custom

@@ -11,8 +11,8 @@ import (
 
 	"leviathan/agent"
 	"leviathan/db"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // jsonResult marshals v to a JSON tool result.

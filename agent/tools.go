@@ -8,8 +8,8 @@ import (
 	"strings"
 
 	"leviathan/db"
-	acperm "github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
+	acperm "leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // compactIntents distills intents to {id, summary, state, asset_ids, parents,

@@ -12,12 +12,12 @@ import (
 
 	"leviathan/db"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/harness"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/harness"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // Worker is an LLM work agent (docs §4.4): it claims ONE intent, completes it

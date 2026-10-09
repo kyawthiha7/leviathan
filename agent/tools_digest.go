@@ -13,7 +13,7 @@ import (
 	"sort"
 
 	"leviathan/db"
-	actool "github.com/Autumn-27/norma/tool"
+	actool "leviathan/thirdparty/norma/tool"
 )
 
 // digestMemberEntry builds the compact per-member view expand_digest returns —

@@ -10,8 +10,8 @@ import (
 	"leviathan/db"
 	"leviathan/guard"
 	"leviathan/intercept"
-	"github.com/Autumn-27/norma/llm"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/llm"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // Real PostgreSQL + SDK hooks: Worker reviews receive the current call only.

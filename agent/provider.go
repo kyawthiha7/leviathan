@@ -21,11 +21,11 @@ import (
 	"time"
 
 	"leviathan/llmrec"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/compaction"
-	"github.com/Autumn-27/norma/llm"
-	acperm "github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/compaction"
+	"leviathan/thirdparty/norma/llm"
+	acperm "leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // Config describes the LLM backend resolved from the environment.

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/norma/compaction"
-	"github.com/Autumn-27/norma/llm"
+	"leviathan/thirdparty/norma/compaction"
+	"leviathan/thirdparty/norma/llm"
 )
 
 type Exchange struct {

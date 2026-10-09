@@ -6,7 +6,7 @@
 // of Events and threads context cancellation throughout.
 package harness
 
-import "github.com/Autumn-27/norma/llm"
+import "leviathan/thirdparty/norma/llm"
 
 // EventKind classifies a loop Event.
 type EventKind string

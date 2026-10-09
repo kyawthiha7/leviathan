@@ -7,11 +7,11 @@ import (
 	"strings"
 
 	"leviathan/db"
-	"github.com/Autumn-27/norma/agentcore"
-	"github.com/Autumn-27/norma/llm"
-	acperm "github.com/Autumn-27/norma/permission"
-	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/norma/transcript"
+	"leviathan/thirdparty/norma/agentcore"
+	"leviathan/thirdparty/norma/llm"
+	acperm "leviathan/thirdparty/norma/permission"
+	actool "leviathan/thirdparty/norma/tool"
+	"leviathan/thirdparty/norma/transcript"
 )
 
 // goalsDefaultTmpl is the built-in EDITABLE body (section [A]) of the goals-decomposer

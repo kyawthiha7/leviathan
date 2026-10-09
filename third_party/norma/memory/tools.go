@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/norma/permission"
-	"github.com/Autumn-27/norma/tool"
+	"leviathan/thirdparty/norma/permission"
+	"leviathan/thirdparty/norma/tool"
 )
 
 // Tools returns the RecallMemory and RecordMemory tools bound to a store.
