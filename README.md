@@ -4,38 +4,6 @@ AI autonomous penetration testing system (Go backend + Next.js frontend)
 
 ---
 
-## Screenshot Overview
-
-| Dashboard (overview / token usage / activity stream) | Task List |
-| :---: | :---: |
-| ![Dashboard](screenshots/dashboard.png) | ![Tasks](screenshots/tasks.png) |
-
-| Task Execution (session / tool calls) | Exploration Graph |
-| :---: | :---: |
-| ![Execution](screenshots/sessions.png) | ![Graph](screenshots/graph.png) |
-
-| Findings | Assets |
-| :---: | :---: |
-| ![Findings](screenshots/findings.png) | ![Assets](screenshots/assets.png) |
-
-| Asset Coverage Map (force‑directed layout, tested highlights, node collapse/expand) |
-| :---: |
-| ![Asset Coverage](screenshots/assets_test.png) |
-
-| Traffic Recording | Human‑in‑the‑loop Conversation |
-| :---: | :---: |
-| ![Traffic](screenshots/traffic.png) | ![Chat](screenshots/chat.png) |
-
-| Agent Management | LLM Configuration |
-| :---: | :---: |
-| ![Agent](screenshots/agents.png) | ![LLM](screenshots/llm.png) |
-
-| Intercept Approval | Backend Logs |
-| :---: | :---: |
-| ![Intercept](screenshots/intercept.png) | ![Logs](screenshots/logs.png) |
-
----
-
 ## Approval Record Details
 
 Global "Approval Records" and task‑level "Intercept Approvals" as well as approval cards in conversations can be expanded to view details. The structure follows the component used in [AegisHook's approval detail component](https://github.com/RuoJi6/AegisHook/blob/main/web/src/components/CallDetail.vue), using LEVIATHAN's component and theme.
