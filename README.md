@@ -2,13 +2,9 @@
 
 AI autonomous penetration testing system (Go backend + Next.js frontend)
 
-🌐 **Live Demo**: https://leviathan-demo.vercel.app/
-
 ---
 
 ## Screenshot Overview
-
-> Full interaction see the [online demo](https://leviathan-demo.vercel.app/).
 
 | Dashboard (overview / token usage / activity stream) | Task List |
 | :---: | :---: |
@@ -62,8 +58,8 @@ Supports direct synchronization of asset data from [ScopeSentry](https://github.
 ### Method 1: One‑Click Install Script (recommended)
 
 ```bash
-git clone https://github.com/Autumn-27/LEVIATHAN.git
-cd LEVIATHAN
+git clone <your-repository-url> leviathan
+cd leviathan
 ./install.sh
 ```
 The script will:
@@ -75,10 +71,10 @@ After installation, open **http://localhost:8787** (first visit go to `/setup` t
 ### Method 2: Docker Compose (manual)
 
 ```bash
-git clone https://github.com/Autumn-27/LEVIATHAN.git
-cd LEVIATHAN
+git clone <your-repository-url> leviathan
+cd leviathan
 cp .env.example .env          # fill POSTGRES_PASSWORD, optional ANTHROPIC_API_KEY
-docker compose up -d          # pulls autumn27/leviathan image + postgres
+docker compose up -d          # builds the leviathan image from source (first run takes a few minutes), starts it + postgres
 # → http://localhost:8787
 ```
 The image includes common tools (ripgrep, curl, vim, npm, nmap…). `./skills` and `./data` are mounted for persistence.
@@ -87,14 +83,14 @@ The image includes common tools (ripgrep, curl, vim, npm, nmap…). `./skills` a
 
 You can select `http` (Streamable HTTP) or `sse` (legacy SSE) in system settings. SSE services typically use `GET /sse` to establish an event stream, then receive JSON‑RPC requests via `/message?sessionId=...`. Configure the URL as `/sse` and set the `Authorization=Bearer <token>` header.
 
-### Method 3: Download Pre‑compiled Binaries (Releases)
+### Method 3: Download a Pre‑compiled Binary (if you publish Releases)
 
-Download the appropriate zip from the [Releases](https://github.com/Autumn-27/LEVIATHAN/releases) page, unzip to obtain `leviathan` + `start.sh` (Windows: `start.bat`) + `skills/` + `config.example.json`:
+If you set up `.github/workflows/release.yml` to build and publish releases for your own repository, download the appropriate zip from your repo's Releases page — it contains `leviathan` + `start.sh` (Windows: `start.bat`) + `skills/` + `config.example.json`:
 ```bash
 cp config.example.json config.json   # fill database connection
 ./start.sh                           # → http://localhost:8787
 ```
-> Use `start.sh` / `start.bat` to launch; do not run `./leviathan` directly. It is a daemon script: when the program exits, the exit code decides whether to restart. The "one‑click update" button on the page relies on this script.
+> Use `start.sh` / `start.bat` to launch; do not run `./leviathan` directly. It is a daemon script: when the program exits, the exit code decides whether to restart it.
 > Background daemon example: `nohup ./start.sh >leviathan.log 2>&1 &`.
 
 ### Method 4: Build from Source (single binary)
@@ -123,47 +119,38 @@ UPX self‑extracting binaries may be incompatible with some Linux kernels, virt
 ## Update & Upgrade
 
 > Upgrading replaces the program without touching data: PostgreSQL volume `pgdata`, `./data` (jwt.key / SQLite etc.), and `./skills` are preserved. **Database migrations are automatic** – each start runs `schema.sql` idempotently (adds columns, creates indexes if not existing).
+>
+> There's no in-app update button — updates are a rebuild, triggered from the shell. This keeps a running server from ever silently fetching and swapping its own binary from the network.
 
-### Method 1: One‑Click Update via UI (recommended)
-
-In the **System Settings** page (sidebar → `/system/settings`), the **Version & Update** card lets you check for and install new versions without logging into the server.
-- Click **Update** → download the current platform's release → compare `SHA256SUMS` → smoke‑test the new binary → stage as `leviathan.new` → the program exits, and `start.sh` / `start.bat` automatically restarts with the new version.
-- **Failure handling**: If verification or smoke test fails, the staged file is discarded and the current version continues. If the new version fails to start three consecutive times, it rolls back to `leviathan.old` (the failed binary remains as `leviathan.failed` for debugging).
-- **Rollback**: The previous version is kept as `leviathan.old`; you can revert via the UI. Database schema does not revert.
-- **Note**: Updates interrupt running tasks – perform during idle periods.
-- **Docker**: Updating the container only replaces the binary, not the embedded tools; after `docker compose up -d` the container will revert to the original image versions. Use `docker compose pull leviathan && docker compose up -d leviathan` to update the image as well.
-- **Proxy**: If GitHub requires a proxy, configure a **global proxy** on the same page; updates will go through it.
-
-### Method 2: One‑Click Update Script
+### Method 1: Update Script (recommended)
 
 ```bash
-cd LEVIATHAN
+cd leviathan
 ./update.sh
 ```
 The script optionally runs `git pull` then lets you choose **① Docker Update** or **② Local Build Update** (mirroring `install.sh`):
-- **① Docker**: Specify target image tag (Enter to use `.env`'s `LEVIATHAN_TAG`, default `latest`) → `docker compose pull` → `docker compose up -d` (docker image swap triggers migration).
+- **① Docker**: Rebuilds the `leviathan` image from source (`docker compose build`) → `docker compose up -d` (restart runs the schema migration automatically).
 - **② Local**: Rebuild frontend static assets → re‑compile `./leviathan` (changes take effect after restart).
 
-### Method 3: Manual Docker Compose Update
+### Method 2: Manual Docker Compose Update
 
 ```bash
-cd LEVIATHAN
-git pull                       # update compose / scripts (optional)
-# Specify version: set LEVIATHAN_TAG=v0.2.0 in .env, otherwise defaults to latest
-docker compose pull leviathan
-docker compose up -d leviathan     # swap image & restart → automatic schema migration
-docker image prune -f          # optional cleanup of old images
+cd leviathan
+git pull                              # update source / compose / scripts
+docker compose build --no-cache leviathan
+docker compose up -d leviathan        # restart → automatic schema migration
+docker image prune -f                 # optional cleanup of old images
 ```
 
-### Method 4: Pre‑compiled Binary (Releases)
+### Method 3: Pre‑compiled Binary (if you publish Releases)
 
-Download the new zip from [Releases], stop the old process, replace `leviathan` and `skills/` (keep your `config.json` and `data/`), then restart:
+Download the new zip from your repo's Releases page, stop the old process, replace `leviathan` and `skills/` (keep your `config.json` and `data/`), then restart:
 ```bash
 cp -r <extracted>/skills ./ && cp <extracted>/leviathan ./
 ./start.sh
 ```
 
-### Method 5: Build from Source
+### Method 4: Build from Source
 
 ```bash
 git pull
@@ -247,7 +234,7 @@ The "Re‑test" tab on a task’s vulnerability detail page allows pagination to
 
 ## System Architecture
 
-LEVIATHAN is an **LLM‑driven autonomous penetration testing system**: Go monolith backend (embedding Next.js frontend) + PostgreSQL. Agent capabilities come from the [`norma`](https://github.com/Autumn-27/norma) SDK (`agentcore`, `tool`, `permission`, `harness`, `memory`, `transcript`). The core features a **dual‑graph architecture** and two autonomous mechanisms:
+LEVIATHAN is an **LLM‑driven autonomous penetration testing system**: Go monolith backend (embedding Next.js frontend) + PostgreSQL. Agent capabilities come from the `norma` SDK (`agentcore`, `tool`, `permission`, `harness`, `memory`, `transcript`) — vendored at [`third_party/norma`](third_party/norma) since its original upstream repository is no longer available. The core features a **dual‑graph architecture** and two autonomous mechanisms:
 - **Worker‑level process‑level information exchange**
 - **Planner multi‑round shared todolist for stable attack chains**
 
@@ -312,14 +299,6 @@ flowchart TB
 
 ---
 
-## Community
-
-Scan the QR code to follow the WeChat public account **SecSentry**; send a private message to join the group.
-
-![WeChat SecSentry](screenshots/wx.png)
-
----
-
 ## References
 
 https://github.com/oritera/Cairn
@@ -350,7 +329,3 @@ You must comply with all local laws regarding cybersecurity, data protection, an
 
 ### Disclaimer
 The project is provided **AS IS**, without any express or implied warranties. The authors and contributors are not liable for any direct or indirect loss, data loss, system damage, or legal disputes resulting from any use of this tool, whether proper or improper.
-
----
-
-The above content is the fully translated English version of the README.
