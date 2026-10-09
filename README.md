@@ -1,14 +1,14 @@
-# ARTEX
+# LEVIATHAN
 
 AI autonomous penetration testing system (Go backend + Next.js frontend)
 
-🌐 **Live Demo**: https://artex-demo.vercel.app/
+🌐 **Live Demo**: https://leviathan-demo.vercel.app/
 
 ---
 
 ## Screenshot Overview
 
-> Full interaction see the [online demo](https://artex-demo.vercel.app/).
+> Full interaction see the [online demo](https://leviathan-demo.vercel.app/).
 
 | Dashboard (overview / token usage / activity stream) | Task List |
 | :---: | :---: |
@@ -42,7 +42,7 @@ AI autonomous penetration testing system (Go backend + Next.js frontend)
 
 ## Approval Record Details
 
-Global "Approval Records" and task‑level "Intercept Approvals" as well as approval cards in conversations can be expanded to view details. The structure follows the component used in [AegisHook's approval detail component](https://github.com/RuoJi6/AegisHook/blob/main/web/src/components/CallDetail.vue), using ARTEX's component and theme.
+Global "Approval Records" and task‑level "Intercept Approvals" as well as approval cards in conversations can be expanded to view details. The structure follows the component used in [AegisHook's approval detail component](https://github.com/RuoJi6/AegisHook/blob/main/web/src/components/CallDetail.vue), using LEVIATHAN's component and theme.
 
 ---
 
@@ -51,7 +51,7 @@ Global "Approval Records" and task‑level "Intercept Approvals" as well as appr
 Supports direct synchronization of asset data from [ScopeSentry](https://github.com/Autumn-27/ScopeSentry), eliminating duplicate collection:
 - On the **Asset Sync** page, enter the ScopeSentry address and API Key to connect the data source.
 - Choose synchronization targets and asset types (domains / subdomains / IPs / ports / sites / endpoints…) by **Project** or **Task**.
-- Import with one click and merge according to company asset scope, making the assets directly usable in ARTEX's asset graph for agents.
+- Import with one click and merge according to company asset scope, making the assets directly usable in LEVIATHAN's asset graph for agents.
 
 ---
 
@@ -62,8 +62,8 @@ Supports direct synchronization of asset data from [ScopeSentry](https://github.
 ### Method 1: One‑Click Install Script (recommended)
 
 ```bash
-git clone https://github.com/Autumn-27/ARTEX.git
-cd ARTEX
+git clone https://github.com/Autumn-27/LEVIATHAN.git
+cd LEVIATHAN
 ./install.sh
 ```
 The script will:
@@ -75,10 +75,10 @@ After installation, open **http://localhost:8787** (first visit go to `/setup` t
 ### Method 2: Docker Compose (manual)
 
 ```bash
-git clone https://github.com/Autumn-27/ARTEX.git
-cd ARTEX
+git clone https://github.com/Autumn-27/LEVIATHAN.git
+cd LEVIATHAN
 cp .env.example .env          # fill POSTGRES_PASSWORD, optional ANTHROPIC_API_KEY
-docker compose up -d          # pulls autumn27/artex image + postgres
+docker compose up -d          # pulls autumn27/leviathan image + postgres
 # → http://localhost:8787
 ```
 The image includes common tools (ripgrep, curl, vim, npm, nmap…). `./skills` and `./data` are mounted for persistence.
@@ -89,13 +89,13 @@ You can select `http` (Streamable HTTP) or `sse` (legacy SSE) in system settings
 
 ### Method 3: Download Pre‑compiled Binaries (Releases)
 
-Download the appropriate zip from the [Releases](https://github.com/Autumn-27/ARTEX/releases) page, unzip to obtain `artex` + `start.sh` (Windows: `start.bat`) + `skills/` + `config.example.json`:
+Download the appropriate zip from the [Releases](https://github.com/Autumn-27/LEVIATHAN/releases) page, unzip to obtain `leviathan` + `start.sh` (Windows: `start.bat`) + `skills/` + `config.example.json`:
 ```bash
 cp config.example.json config.json   # fill database connection
 ./start.sh                           # → http://localhost:8787
 ```
-> Use `start.sh` / `start.bat` to launch; do not run `./artex` directly. It is a daemon script: when the program exits, the exit code decides whether to restart. The "one‑click update" button on the page relies on this script.
-> Background daemon example: `nohup ./start.sh >artex.log 2>&1 &`.
+> Use `start.sh` / `start.bat` to launch; do not run `./leviathan` directly. It is a daemon script: when the program exits, the exit code decides whether to restart. The "one‑click update" button on the page relies on this script.
+> Background daemon example: `nohup ./start.sh >leviathan.log 2>&1 &`.
 
 ### Method 4: Build from Source (single binary)
 
@@ -105,7 +105,7 @@ cd web && npm ci && npm run build:static && cd ..
 # Copy into embedded directory
 cp -r web/out server/webui/dist
 # Compile (use -tags embedui to embed frontend)
-CGO_ENABLED=0 go build -tags embedui -o artex ./cmd/artex
+CGO_ENABLED=0 go build -tags embedui -o leviathan ./cmd/leviathan
 ./start.sh
 ```
 
@@ -114,9 +114,9 @@ CGO_ENABLED=0 go build -tags embedui -o artex ./cmd/artex
 `build.sh` builds and embeds the frontend, then strips debugging info and compresses the release zip. Release mode generates Linux amd64/arm64, macOS amd64/arm64, and Windows amd64 zip packages:
 ```bash
 ./build.sh --release
-# Output: dist/artex-0.3.3-*.zip
+# Output: dist/leviathan-0.3.3-*.zip
 ```
-UPX self‑extracting binaries may be incompatible with some Linux kernels, virtualization environments, or security policies, so it is disabled by default. You can enable it with `ARTEX_TARGETS` and `--upx` when you have confirmed compatibility.
+UPX self‑extracting binaries may be incompatible with some Linux kernels, virtualization environments, or security policies, so it is disabled by default. You can enable it with `LEVIATHAN_TARGETS` and `--upx` when you have confirmed compatibility.
 
 ---
 
@@ -127,39 +127,39 @@ UPX self‑extracting binaries may be incompatible with some Linux kernels, virt
 ### Method 1: One‑Click Update via UI (recommended)
 
 In the **System Settings** page (sidebar → `/system/settings`), the **Version & Update** card lets you check for and install new versions without logging into the server.
-- Click **Update** → download the current platform's release → compare `SHA256SUMS` → smoke‑test the new binary → stage as `artex.new` → the program exits, and `start.sh` / `start.bat` automatically restarts with the new version.
-- **Failure handling**: If verification or smoke test fails, the staged file is discarded and the current version continues. If the new version fails to start three consecutive times, it rolls back to `artex.old` (the failed binary remains as `artex.failed` for debugging).
-- **Rollback**: The previous version is kept as `artex.old`; you can revert via the UI. Database schema does not revert.
+- Click **Update** → download the current platform's release → compare `SHA256SUMS` → smoke‑test the new binary → stage as `leviathan.new` → the program exits, and `start.sh` / `start.bat` automatically restarts with the new version.
+- **Failure handling**: If verification or smoke test fails, the staged file is discarded and the current version continues. If the new version fails to start three consecutive times, it rolls back to `leviathan.old` (the failed binary remains as `leviathan.failed` for debugging).
+- **Rollback**: The previous version is kept as `leviathan.old`; you can revert via the UI. Database schema does not revert.
 - **Note**: Updates interrupt running tasks – perform during idle periods.
-- **Docker**: Updating the container only replaces the binary, not the embedded tools; after `docker compose up -d` the container will revert to the original image versions. Use `docker compose pull artex && docker compose up -d artex` to update the image as well.
+- **Docker**: Updating the container only replaces the binary, not the embedded tools; after `docker compose up -d` the container will revert to the original image versions. Use `docker compose pull leviathan && docker compose up -d leviathan` to update the image as well.
 - **Proxy**: If GitHub requires a proxy, configure a **global proxy** on the same page; updates will go through it.
 
 ### Method 2: One‑Click Update Script
 
 ```bash
-cd ARTEX
+cd LEVIATHAN
 ./update.sh
 ```
 The script optionally runs `git pull` then lets you choose **① Docker Update** or **② Local Build Update** (mirroring `install.sh`):
-- **① Docker**: Specify target image tag (Enter to use `.env`'s `ARTEX_TAG`, default `latest`) → `docker compose pull` → `docker compose up -d` (docker image swap triggers migration).
-- **② Local**: Rebuild frontend static assets → re‑compile `./artex` (changes take effect after restart).
+- **① Docker**: Specify target image tag (Enter to use `.env`'s `LEVIATHAN_TAG`, default `latest`) → `docker compose pull` → `docker compose up -d` (docker image swap triggers migration).
+- **② Local**: Rebuild frontend static assets → re‑compile `./leviathan` (changes take effect after restart).
 
 ### Method 3: Manual Docker Compose Update
 
 ```bash
-cd ARTEX
+cd LEVIATHAN
 git pull                       # update compose / scripts (optional)
-# Specify version: set ARTEX_TAG=v0.2.0 in .env, otherwise defaults to latest
-docker compose pull artex
-docker compose up -d artex     # swap image & restart → automatic schema migration
+# Specify version: set LEVIATHAN_TAG=v0.2.0 in .env, otherwise defaults to latest
+docker compose pull leviathan
+docker compose up -d leviathan     # swap image & restart → automatic schema migration
 docker image prune -f          # optional cleanup of old images
 ```
 
 ### Method 4: Pre‑compiled Binary (Releases)
 
-Download the new zip from [Releases], stop the old process, replace `artex` and `skills/` (keep your `config.json` and `data/`), then restart:
+Download the new zip from [Releases], stop the old process, replace `leviathan` and `skills/` (keep your `config.json` and `data/`), then restart:
 ```bash
-cp -r <extracted>/skills ./ && cp <extracted>/artex ./
+cp -r <extracted>/skills ./ && cp <extracted>/leviathan ./
 ./start.sh
 ```
 
@@ -169,7 +169,7 @@ cp -r <extracted>/skills ./ && cp <extracted>/artex ./
 git pull
 cd web && npm ci && npm run build:static && cd ..
 cp -r web/out server/webui/dist
-CGO_ENABLED=0 go build -tags embedui -o artex ./cmd/artex
+CGO_ENABLED=0 go build -tags embedui -o leviathan ./cmd/leviathan
 # Restart
 ./start.sh
 ```
@@ -178,23 +178,23 @@ CGO_ENABLED=0 go build -tags embedui -o artex ./cmd/artex
 
 ## Configuration
 
-**Database** (`config.json` or via `ARTEX_PG_DSN` env):
+**Database** (`config.json` or via `LEVIATHAN_PG_DSN` env):
 ```json
 {
   "database": {
     "host": "127.0.0.1",
     "port": 5432,
-    "user": "artex",
+    "user": "leviathan",
     "password": "yourpass",
-    "dbname": "artex",
+    "dbname": "leviathan",
     "sslmode": "disable"
   }
 }
 ```
 **LLM**: `export ANTHROPIC_API_KEY=sk-...` (or `OPENAI_API_KEY`), also configurable in the UI's **LLM Configuration** page.
-Optional: `ARTEX_LLM_PROVIDER`, `ARTEX_LLM_MODEL`, `ARTEX_LLM_BASE_URL`, `ARTEX_LLM_PROXY`.
+Optional: `LEVIATHAN_LLM_PROVIDER`, `LEVIATHAN_LLM_MODEL`, `LEVIATHAN_LLM_BASE_URL`, `LEVIATHAN_LLM_PROXY`.
 **Concurrency**: Number of workers per task is configurable in **System Settings** (default 3).
-**Common Parameters**: `./start.sh -addr :8787 -proxy :8788` (pass directly to `artex`).
+**Common Parameters**: `./start.sh -addr :8787 -proxy :8788` (pass directly to `leviathan`).
 
 ### Reverse Proxy Deployment (HTTPS / expose only 443)
 
@@ -237,7 +237,7 @@ The "Re‑test" tab on a task’s vulnerability detail page allows pagination to
 ```bash
 ./dev.sh    # backend (:8787) + traffic proxy (:8788) + frontend next dev (:5173) → http://localhost:5173
 ```
-- Backend: `go run ./cmd/artex` (omit `-tags embedui` to not embed frontend).
+- Backend: `go run ./cmd/leviathan` (omit `-tags embedui` to not embed frontend).
 - Frontend: `cd web && npm run dev` (API proxied to backend, hot reload).
 - Tests: `go test ./...`
 - Mock preview (no backend): `cd web && NEXT_PUBLIC_MOCK=1 npm run dev`
@@ -246,7 +246,7 @@ The "Re‑test" tab on a task’s vulnerability detail page allows pagination to
 
 ## System Architecture
 
-ARTEX is an **LLM‑driven autonomous penetration testing system**: Go monolith backend (embedding Next.js frontend) + PostgreSQL. Agent capabilities come from the [`norma`](https://github.com/Autumn-27/norma) SDK (`agentcore`, `tool`, `permission`, `harness`, `memory`, `transcript`). The core features a **dual‑graph architecture** and two autonomous mechanisms:
+LEVIATHAN is an **LLM‑driven autonomous penetration testing system**: Go monolith backend (embedding Next.js frontend) + PostgreSQL. Agent capabilities come from the [`norma`](https://github.com/Autumn-27/norma) SDK (`agentcore`, `tool`, `permission`, `harness`, `memory`, `transcript`). The core features a **dual‑graph architecture** and two autonomous mechanisms:
 - **Worker‑level process‑level information exchange**
 - **Planner multi‑round shared todolist for stable attack chains**
 

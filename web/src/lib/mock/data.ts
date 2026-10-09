@@ -2909,7 +2909,7 @@ export const trafficDetail: TrafficDetail = {
   req: `GET /v1/orders?id=1002 HTTP/1.1
 Host: api.acme.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...
-User-Agent: ARTEX-worker/1.0
+User-Agent: LEVIATHAN-worker/1.0
 Accept: application/json
 
 `,
@@ -3152,15 +3152,15 @@ const promptVars: PromptVar[] = [
 ];
 
 const promptVersions: PromptVersion[] = [
-  { version: 3, ts: T("2026-07-25T10:00:00Z"), note: "Enhance over-privilege detection guidance", template_text: "You are ARTEX planner……" },
-  { version: 2, ts: T("2026-07-20T10:00:00Z"), note: "Initial fine-tuning", template_text: "You are ARTEX planner(v2)……" },
+  { version: 3, ts: T("2026-07-25T10:00:00Z"), note: "Enhance over-privilege detection guidance", template_text: "You are LEVIATHAN planner……" },
+  { version: 2, ts: T("2026-07-20T10:00:00Z"), note: "Initial fine-tuning", template_text: "You are LEVIATHAN planner(v2)……" },
 ];
 
 export function agentDetail(key: string): AgentDetail {
   const a = agents.find((x) => x.key === key) ?? agents[1];
   return {
     agent: a,
-    prompt: `You are ARTEX's “${a.name}”.\nTarget: {{.Goal}}\nAsset overview: {{.AssetSummary}}\nRoute hint: {{.RouteHint}}\nAdvance exploration using above info; write results back to graph via tools.`,
+    prompt: `You are LEVIATHAN's “${a.name}”.\nTarget: {{.Goal}}\nAsset overview: {{.AssetSummary}}\nRoute hint: {{.RouteHint}}\nAdvance exploration using above info; write results back to graph via tools.`,
     variables: promptVars,
     versions: promptVersions,
     visibility: { mcp: [1, 2], skill: ["api-recon", "playwright-cli"] },

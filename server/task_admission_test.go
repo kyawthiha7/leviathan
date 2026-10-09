@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/leviathan/agent"
+	"github.com/Autumn-27/leviathan/db"
 )
 
 func newAdmissionTestServer(m *Manager, available func(*Task) bool) *Server {

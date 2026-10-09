@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/leviathan/agent"
+	"github.com/Autumn-27/leviathan/db"
 	"github.com/Autumn-27/norma/permission"
 	actool "github.com/Autumn-27/norma/tool"
 )
@@ -543,7 +543,7 @@ func (s *Server) refreshBuiltinToolSchemas() {
 		}
 	}
 	_ = s.m.pg.SetSetting(flag, "true")
-	log.Printf("[tools] 已刷新 orchestration/platform 工具 schema 到代码默认(一次性)")
+	log.Printf("[tools] orchestration/platform tool schemas refreshed to code defaults (one-time)")
 }
 
 // unbindGoalMetDefault removes goal_met's default "planner" binding ONCE (guarded by
@@ -776,7 +776,7 @@ func (s *Server) seedReporterAgent() {
 	}); err != nil {
 		log.Printf("[reporter] 创建触发器失败: %v", err)
 	}
-	log.Printf("[reporter] 已预置「报告撰写」agent + finding 触发器")
+	log.Printf("[reporter] seeded \"report writer\" agent + finding trigger")
 }
 
 // seedAutoReportFindingBinding adds "auto" to report_finding's binding ONCE so

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/llmrec"
+	"github.com/Autumn-27/leviathan/agent"
+	"github.com/Autumn-27/leviathan/llmrec"
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
 )

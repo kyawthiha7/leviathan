@@ -7,8 +7,8 @@ import (
 
 	actool "github.com/Autumn-27/norma/tool"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/leviathan/agent"
+	"github.com/Autumn-27/leviathan/db"
 )
 
 type toolUsageRecorder interface {

@@ -2,40 +2,50 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-artex}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?请在 .env 设置 POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB:-artex}
+      POSTGRES_USER: ${POSTGRES_USER:-leviathan}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Please set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-leviathan}
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-artex} -d ${POSTGRES_DB:-artex}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-leviathan} -d ${POSTGRES_DB:-leviathan}"]
       interval: 5s
       timeout: 3s
       retries: 10
     restart: unless-stopped
 
-  artex:
-    image: autumn27/artex:${ARTEX_TAG:-latest}
+  leviathan:
+    # Built locally from source by default (Dockerfile.local), so this works
+    # on any machine with just Docker installed — no dependency on a
+    # prebuilt image being published to a registry. If a released image tag
+    # is available and you'd rather use that, run with `--no-build` or set
+    # LEVIATHAN_TAG and run `docker compose pull leviathan` first.
+    image: leviathan:${LEVIATHAN_TAG:-local}
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     depends_on:
       postgres:
         condition: service_healthy
     environment:
-      ARTEX_PG_DSN: postgres://${POSTGRES_USER:-artex}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-artex}?sslmode=disable
+      LEVIATHAN_PG_DSN: postgres://${POSTGRES_USER:-leviathan}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-leviathan}?sslmode=disable
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      ARTEX_LLM_PROVIDER: ${ARTEX_LLM_PROVIDER:-}
-      ARTEX_LLM_MODEL: ${ARTEX_LLM_MODEL:-}
-      ARTEX_LLM_BASE_URL: ${ARTEX_LLM_BASE_URL:-}
-      ARTEX_LLM_PROXY: ${ARTEX_LLM_PROXY:-}
+      LEVIATHAN_LLM_PROVIDER: ${LEVIATHAN_LLM_PROVIDER:-}
+      LEVIATHAN_LLM_MODEL: ${LEVIATHAN_LLM_MODEL:-}
+      LEVIATHAN_LLM_BASE_URL: ${LEVIATHAN_LLM_BASE_URL:-}
+      LEVIATHAN_LLM_PROXY: ${LEVIATHAN_LLM_PROXY:-}
     ports:
       - "8787:8787"
       - "127.0.0.1:8788:8788"
     volumes:
-      # 把数据目录（含 jwt.key、SQLite 等）绑定到项目根目录的 data/，
-      # 方便在宿主机直接查看/备份，容器重建也不丢。
+      # Bind the data directory (jwt.key, SQLite, etc.) to ./data in the
+      # project root, so it's easy to inspect/back up from the host and
+      # survives container rebuilds.
       - ./data:/app/data
-      # 把项目根目录的 skills 挂进容器（覆盖镜像内置的 /app/skills）；
-      # 改 skill 无需重建镜像，容器读的就是宿主机这份。
+      # Mount the project root's skills/ into the container (overriding the
+      # image's built-in /app/skills); editing a skill doesn't require
+      # rebuilding the image, since the container reads straight from the host.
       - ./skills:/app/skills
     restart: unless-stopped
 

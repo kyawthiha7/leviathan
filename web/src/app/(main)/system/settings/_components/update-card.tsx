@@ -72,7 +72,7 @@ export function UpdateCard() {
   // 轮询 /api/health 直到版本号变化。
   //
   // 判据必须是"版本变了"而不是"能连上了"：换装过程中旧版本会短暂地重新起来一次
-  // （那一次只负责把 artex.new 换上去然后立刻退出），只看连通性会误判成功。
+  // （那一次只负责把 leviathan.new 换上去然后立刻退出），只看连通性会误判成功。
   const waitForNewVersion = React.useCallback(async (fromVersion: string) => {
     setRestarting(true);
     const deadline = Date.now() + RESTART_TIMEOUT_MS;
@@ -94,7 +94,7 @@ export function UpdateCard() {
       }
     }
     setRestarting(false);
-    toast.error("Service restart timed out. Check backend logs or confirm artex is started via start.sh / start.bat.");
+    toast.error("Service restart timed out. Check backend logs or confirm leviathan is started via start.sh / start.bat.");
   }, []);
 
   // 订阅更新进度。SSE 不走 Next 的 /api 重写（那层会缓冲，事件推不出来）。
@@ -270,7 +270,7 @@ export function UpdateCard() {
             Docker Only replaces the program itself, does not update toolchains such as playwright / nmap in the image, and
             <span className="font-mono"> docker compose up -d </span>
             Rebuilding the container reverts to the image's default version. To upgrade the image together, please execute
-            <span className="font-mono"> docker compose pull artex &amp;&amp; docker compose up -d artex</span>。
+            <span className="font-mono"> docker compose pull leviathan &amp;&amp; docker compose up -d leviathan</span>。
           </p>
         )}
 
@@ -306,7 +306,7 @@ export function UpdateCard() {
 
         <p className="text-xs text-muted-foreground">
           One-click update dependencies; daemon script restarts the program. Please use <span className="font-mono">start.sh</span>(Windows For
-          <span className="font-mono"> start.bat</span>) Start ARTEX; when running the artex binary directly, the program won’t be automatically respawned after exit.
+          <span className="font-mono"> start.bat</span>) Start LEVIATHAN; when running the leviathan binary directly, the program won’t be automatically respawned after exit.
         </p>
       </CardContent>
     </Card>

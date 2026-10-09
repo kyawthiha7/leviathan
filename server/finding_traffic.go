@@ -13,9 +13,9 @@ import (
 	"strconv"
 	"unicode/utf8"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/db"
-	"github.com/Autumn-27/artex/evidence"
+	"github.com/Autumn-27/leviathan/agent"
+	"github.com/Autumn-27/leviathan/db"
+	"github.com/Autumn-27/leviathan/evidence"
 	actool "github.com/Autumn-27/norma/tool"
 )
 

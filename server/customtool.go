@@ -17,7 +17,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/leviathan/db"
 	"github.com/Autumn-27/norma/permission"
 	actool "github.com/Autumn-27/norma/tool"
 )
@@ -209,7 +209,7 @@ func (s *Server) seedPythonInterpreter() {
 	}
 	if p := detectPython(); p != "" {
 		_ = s.m.pg.SetSetting(settingPythonInterp, p)
-		log.Printf("[custom-tool] 自动检测到 python 解释器: %s", p)
+		log.Printf("[custom-tool] auto-detected python interpreter: %s", p)
 	}
 }
 

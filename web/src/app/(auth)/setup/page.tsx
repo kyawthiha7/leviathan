@@ -63,7 +63,7 @@ export default function SetupPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/logo.png"
-            alt="ARTEX"
+            alt="LEVIATHAN"
             width={160}
             height={160}
             className="relative brightness-0 invert"
@@ -76,7 +76,7 @@ export default function SetupPage() {
         <div className="w-full max-w-md space-y-10 py-24 lg:py-32">
           <div className="space-y-4 text-center">
             <h2 className="text-2xl font-medium tracking-tight">Initialize password</h2>
-            <p className="mx-auto max-w-xl text-muted-foreground">First time using ARTEX, set a login password (min 8 characters)</p>
+            <p className="mx-auto max-w-xl text-muted-foreground">First time using LEVIATHAN, set a login password (min 8 characters)</p>
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="space-y-1.5">
