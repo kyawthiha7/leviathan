@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/agent"
+	"leviathan/agent"
 )
 
 func TestPauseCancelsWithNamedCause(t *testing.T) {

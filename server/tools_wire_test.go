@@ -6,8 +6,8 @@ import (
 	"testing"
 
 	actool "github.com/Autumn-27/norma/tool"
-	"github.com/Autumn-27/leviathan/agent"
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/agent"
+	"leviathan/db"
 )
 
 func names(tools []actool.CoreTool) map[string]actool.CoreTool {

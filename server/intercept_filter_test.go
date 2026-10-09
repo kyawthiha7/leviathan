@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/intercept"
+	"leviathan/db"
+	"leviathan/intercept"
 )
 
 func TestInterceptFilterHTTP(t *testing.T) {

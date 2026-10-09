@@ -6,21 +6,11 @@
 #   nohup ./start.sh >leviathan.log 2>&1 &   run in background, persistent
 #   ./start.sh -addr :9000           extra args are passed through to leviathan as-is
 #
-# It does exactly one thing: keep leviathan running, and decide whether to
-# relaunch it based on its exit code once the process exits.
+# It does exactly one thing: keep leviathan running, and relaunch it after a
+# crash with a backoff delay.
 #
 #   0      user stopped it normally   -> exit the loop
-#   75     app requested a restart    -> relaunch immediately (user clicked
-#                                        "one-click update" or "rollback" in the UI)
 #   other  crash                      -> back off then relaunch (1->2->4… up to 60s)
-#
-# Deliberately NOT doing downloads, SHA256 verification, or swapping the
-# binary here: that logic would have to be written twice (sh and bat), and
-# it's exactly the part that can least afford to be wrong — once a binary
-# that won't run gets swapped in, this script will faithfully keep relaunching
-# it, and the user is stuck fixing it by hand on the machine. So verification/
-# swapping all stays in Go (the selfupdate package), done by leviathan itself at
-# startup, and this script stays dumb.
 set -u
 
 cd "$(dirname "$0")" || exit 1
@@ -28,7 +18,6 @@ cd "$(dirname "$0")" || exit 1
 BIN=./leviathan
 [ -x "$BIN" ] || { echo "[leviathan] executable not found: $BIN" >&2; exit 1; }
 
-RESTART_CODE=75
 MAX_DELAY=60
 
 child=0
@@ -73,12 +62,6 @@ while :; do
 		0)
 			echo "[leviathan] exited normally"
 			exit 0
-			;;
-		"$RESTART_CODE")
-			# Update/rollback is ready: leviathan will finish swapping itself in
-			# on this relaunch (see selfupdate.Bootstrap).
-			echo "[leviathan] restart requested (applying new version)…"
-			delay=1
 			;;
 		*)
 			echo "[leviathan] exited abnormally (code=$code), restarting in ${delay}s" >&2

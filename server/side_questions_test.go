@@ -14,9 +14,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/agent"
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/sidequestion"
+	"leviathan/agent"
+	"leviathan/db"
+	"leviathan/sidequestion"
 	"github.com/Autumn-27/norma/harness"
 	"github.com/Autumn-27/norma/llm"
 )

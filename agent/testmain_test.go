@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/db"
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
 

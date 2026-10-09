@@ -8,7 +8,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/db"
 )
 
 func TestInheritedActivityDetailAndRelationDeletion(t *testing.T) {

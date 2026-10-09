@@ -7,7 +7,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/db"
 )
 
 func TestTraceExactCorrelationAndSnapshot(t *testing.T) {

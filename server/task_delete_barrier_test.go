@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/agent"
+	"leviathan/agent"
 )
 
 func TestEngineDeleteBarrierRejectsNewTaskOperations(t *testing.T) {
@@ -120,7 +120,7 @@ func TestTaskLifecycleRechecksDeleteBarrierAfterConcLock(t *testing.T) {
 		t.Fatal("install delete barrier")
 	}
 	s.concMu.Unlock()
-	if err := <-pauseDone; err == nil || !strings.Contains(err.Error(), "正在删除") {
+	if err := <-pauseDone; err == nil || !strings.Contains(err.Error(), "being deleted") {
 		t.Fatalf("pause passed a delete barrier installed while waiting for concMu: %v", err)
 	}
 	s.engine.AbortDelete(task.ID, false)

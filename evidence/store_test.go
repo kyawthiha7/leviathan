@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/traffic"
+	"leviathan/db"
+	"leviathan/traffic"
 )
 
 func evidenceFixture(t *testing.T) (*Store, db.RecordFindingInput, string) {

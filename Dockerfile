@@ -43,7 +43,7 @@ WORKDIR /app
 # Prebuilt binary for the matching architecture (dist/amd64/leviathan or dist/arm64/leviathan)
 COPY dist/${TARGETARCH}/leviathan /app/leviathan
 # Supervisor start script: decides whether to relaunch based on the process's
-# exit code, and is what makes the one-click update in the UI work. It's also
+# exit code after a crash. It's also
 # responsible for forwarding SIGTERM to leviathan — `docker stop` only signals
 # PID 1, so without forwarding, leviathan never receives it and can't shut down
 # gracefully; it would get hard-killed by SIGKILL after 10 seconds.

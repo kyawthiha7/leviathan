@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	pgdb "github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/traffic"
+	pgdb "leviathan/db"
+	"leviathan/traffic"
 )
 
 func TestSeedAssociatesTargetAssetWithTask(t *testing.T) {

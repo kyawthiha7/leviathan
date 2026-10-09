@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/db"
 )
 
 // TestChatUnavailableReasonDistinguishesStates pins the operator-facing message

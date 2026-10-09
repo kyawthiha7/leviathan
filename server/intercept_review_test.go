@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/intercept"
+	"leviathan/db"
+	"leviathan/intercept"
 	"github.com/Autumn-27/norma/llm"
 )
 

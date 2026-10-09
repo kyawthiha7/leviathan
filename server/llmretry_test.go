@@ -4,12 +4,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/agent"
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/agent"
+	"leviathan/db"
 )
 
-// 没有任何配置时，解析结果必须是全零 —— 也就是 SDK 与 task_llm 各自的内置默认，
-// 与「重试可配」这个特性上线之前逐字节一致。
+// With no configuration at all, the resolution must be all zero — i.e. the SDK's and
+// task_llm's respective built-in defaults, byte-for-byte identical to before the
+// "configurable retries" feature shipped.
 func TestResolveRetryUnconfigured(t *testing.T) {
 	got := resolveRetry(db.RetryOverride{}, db.LLMRetryPolicy{})
 	if got != (agent.RetryConfig{}) {

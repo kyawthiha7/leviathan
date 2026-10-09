@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/agent"
+	"leviathan/agent"
 )
 
 func TestShutdownContextPreservesNamedCause(t *testing.T) {

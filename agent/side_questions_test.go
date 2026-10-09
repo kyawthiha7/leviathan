@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/sidequestion"
+	"leviathan/db"
+	"leviathan/sidequestion"
 	"github.com/Autumn-27/norma/llm"
 	"github.com/Autumn-27/norma/transcript"
 )
@@ -104,7 +104,7 @@ func TestSideActualChatCheckpointToolResultAndTranscriptIsolation(t *testing.T) 
 			p.calls = 0
 			p.path = filepath.Join(dir, "nonexistent")
 			answer, err := (sidequestion.SideQuestionService{Provider: bound}).Answer(t.Context(), req, streaming, nil)
-			if err != nil || !answer.ToolUse || p.calls != 1 || !strings.Contains(answer.Text, "不能执行工具") {
+			if err != nil || !answer.ToolUse || p.calls != 1 || !strings.Contains(answer.Text, "cannot execute tool operations") {
 				t.Fatalf("tool denial %+v %v", answer, err)
 			}
 			after, err := os.ReadFile(store.MainPath("conv-987654"))

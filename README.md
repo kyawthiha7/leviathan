@@ -192,7 +192,8 @@ CGO_ENABLED=0 go build -tags embedui -o leviathan ./cmd/leviathan
 }
 ```
 **LLM**: `export ANTHROPIC_API_KEY=sk-...` (or `OPENAI_API_KEY`), also configurable in the UI's **LLM Configuration** page.
-Optional: `LEVIATHAN_LLM_PROVIDER`, `LEVIATHAN_LLM_MODEL`, `LEVIATHAN_LLM_BASE_URL`, `LEVIATHAN_LLM_PROXY`.
+Built-in providers: `anthropic`, `openai`, `openai-responses`, `deepseek`, `glm` (Zhipu), `kiwi` (LLM.kiwi). Pick one in the UI or via `LEVIATHAN_LLM_PROVIDER`; the OpenAI-compatible ones (DeepSeek/GLM/Kiwi) use `OPENAI_API_KEY` or the generic `LEVIATHAN_LLM_API_KEY`.
+Optional: `LEVIATHAN_LLM_MODEL`, `LEVIATHAN_LLM_BASE_URL`, `LEVIATHAN_LLM_PROXY`, `LEVIATHAN_LLM_API_KEY`.
 **Concurrency**: Number of workers per task is configurable in **System Settings** (default 3).
 **Common Parameters**: `./start.sh -addr :8787 -proxy :8788` (pass directly to `leviathan`).
 

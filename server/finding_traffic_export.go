@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/evidence"
-	"github.com/Autumn-27/leviathan/report"
+	"leviathan/db"
+	"leviathan/evidence"
+	"leviathan/report"
 )
 
 func writeFindingsEvidenceZip(out io.Writer, findings []*db.DBFinding, stage string, now time.Time) error {

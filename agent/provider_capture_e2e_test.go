@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Autumn-27/leviathan/llmrec"
+	"leviathan/llmrec"
 	"github.com/Autumn-27/norma/llm"
 )
 

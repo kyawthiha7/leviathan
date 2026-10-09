@@ -14,7 +14,7 @@ web/node_modules/
 web/.next/
 web/tsconfig.tsbuildinfo
 web/next-env.d.ts
-*.local
+web/*.local
 
 # development tools
 .playwright-mcp/
@@ -36,13 +36,6 @@ Thumbs.db
 
 # Single-binary build with the embedded frontend
 /leviathan
-# Intermediate files left next to the executable by the one-click update
-# (staged files / backups / failed versions / upgrade markers)
-/leviathan.new
-/leviathan.new.sha256
-/leviathan.old
-/leviathan.failed
-/leviathan.upgrade.json
 /server/webui/dist/
 /dist/
 

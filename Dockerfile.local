@@ -1,0 +1,72 @@
+# syntax=docker/dockerfile:1
+#
+# Self-contained local build: compiles the frontend and backend from source
+# entirely inside Docker, so `docker compose build` / `docker compose up
+# --build` works on any machine that only has Docker installed — no local
+# Go or Node.js toolchain required, and no dependency on a prebuilt image
+# being published to a registry.
+#
+# This is the Dockerfile used by docker-compose.yml's `build:` section. The
+# plain `Dockerfile` in the repo root is the CI release image: it expects an
+# already-compiled binary at dist/<arch>/leviathan (see .github/workflows/release.yml)
+# and is faster to build in CI because the frontend/backend are compiled once
+# outside the image. Use this file for local/dev builds instead.
+
+# ---- stage 1: frontend static export -----------------------------------
+FROM node:20-bookworm-slim AS frontend-builder
+WORKDIR /app/web
+COPY web/package.json web/package-lock.json ./
+RUN npm ci
+COPY web/ ./
+RUN npm run build:static
+
+# ---- stage 2: backend build (embeds the frontend into the binary) ------
+FROM golang:1.26-bookworm AS backend-builder
+WORKDIR /app
+COPY go.mod go.sum ./
+COPY third_party/ ./third_party/
+RUN go mod download
+COPY . .
+COPY --from=frontend-builder /app/web/out ./server/webui/dist
+RUN CGO_ENABLED=0 go build -tags embedui -trimpath -o /out/leviathan ./cmd/leviathan
+
+# ---- stage 3: runtime image ---------------------------------------------
+FROM python:3.12-slim-bookworm
+ARG TARGETARCH
+# Common tools: ripgrep / curl / vim, plus a standard recon toolkit (add/remove as needed).
+# Node is installed from NodeSource at 20.x: Bookworm's apt nodejs package is 18, and
+# Playwright requires >=20.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      ca-certificates ripgrep curl wget vim git jq unzip \
+      dnsutils iputils-ping netcat-openbsd inetutils-telnet whois nmap \
+    && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y --no-install-recommends nodejs \
+    && rm -rf /var/lib/apt/lists/*
+# Pre-install Playwright MCP and CLI (globally) so nothing needs to be fetched
+# over the network via npx at runtime.
+# @playwright/mcp: the browser MCP is run directly as `npx @playwright/mcp`
+# (already installed globally, so no -y/@latest needed).
+# @playwright/cli: provides playwright-cli; verify it's executable with --help
+# right after installing.
+# Then install playwright itself (provides browser management); use --with-deps
+# to pre-provision chromium and its system dependencies, so the MCP/CLI inside
+# the container works on first launch without downloading a browser.
+RUN npm install -g @playwright/mcp@latest @playwright/cli@latest playwright@latest \
+    && playwright-cli --help \
+    && playwright install --with-deps chromium \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY --from=backend-builder /out/leviathan /app/leviathan
+# Supervisor start script: decides whether to relaunch based on the process's
+# exit code after a crash. It's also
+# responsible for forwarding SIGTERM to leviathan — `docker stop` only signals
+# PID 1, so without forwarding, leviathan never receives it and can't shut down
+# gracefully; it would get hard-killed by SIGKILL after 10 seconds.
+COPY start.sh /app/start.sh
+RUN chmod +x /app/leviathan /app/start.sh
+COPY skills/ /app/skills/
+# Persistence mount point for data/ (SQLite + jwt.key)
+VOLUME ["/app/data"]
+EXPOSE 8787 8788
+ENTRYPOINT ["/app/start.sh"]
+CMD ["-addr", ":8787", "-proxy", ":8788"]

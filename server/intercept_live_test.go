@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/leviathan/agent"
-	"github.com/Autumn-27/leviathan/db"
-	"github.com/Autumn-27/leviathan/intercept"
+	"leviathan/agent"
+	"leviathan/db"
+	"leviathan/intercept"
 	"github.com/Autumn-27/norma/llm"
 )
 

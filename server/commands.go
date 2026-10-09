@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Autumn-27/leviathan/db"
+	"leviathan/db"
 )
 
 // pgListCommands returns tool executions (any tool) from the activity table.

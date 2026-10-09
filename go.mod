@@ -1,4 +1,4 @@
-module github.com/Autumn-27/leviathan
+module leviathan
 
 go 1.26.3
 
@@ -16,6 +16,14 @@ require (
 	golang.org/x/text v0.41.0
 	modernc.org/sqlite v1.52.0
 )
+
+// norma's own upstream repo (github.com/Autumn-27/norma) has been deleted from
+// GitHub. It's still resolvable via the Go module proxy's permanent cache, but
+// as a safety net against that cache ever going away too, a copy is kept at
+// third_party/norma and wired in here instead of being fetched over the
+// network. See third_party/norma/README.md for norma's own
+// documentation/attribution — it is third-party code, kept as-is.
+replace github.com/Autumn-27/norma => ./third_party/norma
 
 require (
 	github.com/andybalholm/brotli v1.2.1 // indirect
